@@ -1,2 +1,7 @@
-var hap=['a','b','c'];
-console.log(hap);
+var spy = Spy(console, 'error')
+
+    console.error('calling console.error')
+    console.error('calling console.error')
+    console.error('calling console.error')
+
+    console.log(spy.count) // 3

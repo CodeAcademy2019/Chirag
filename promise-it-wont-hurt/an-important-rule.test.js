@@ -12,4 +12,12 @@ describe('testing an-important-rule.js',() =>{
         program.runner();    
         expect(program.iterate).toHaveBeenCalledTimes(5);
     });
+
+    it('Testing if iterate works fine',() =>{
+        expect(program.iterate(2)).toEqual(3);
+    });
+
+    it('Testing if alwaysThrows throws an error',() => {
+        expect(program.alwaysThrows).toThrowError('OH NOES');
+    });
 });

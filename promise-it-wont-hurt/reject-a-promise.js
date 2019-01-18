@@ -1,17 +1,16 @@
-var os = require('os'); os.tmpDir = os.tmpdir;
+const err = new Error('REJECTED!');
 
-var promise = new Promise(function (fulfill, reject) {
-    // var error={
-    //     message: 'REJECTED!'
-    // };
-    setTimeout(() => {
-        reject(new Error('REJECTED!'));
-    }, 300);
+function runner(){
+  return new Promise(function (fulfill, reject) {
+    setTimeout(() =>{
+      reject(err)}, 300);
   });
-  
+}
   function onReject (error) {
     console.log(error.message);
-    return;
+    return error.message
   }
+  promise=runner();
   promise.then(null,onReject);
   
+  module.exports={runner,onReject};

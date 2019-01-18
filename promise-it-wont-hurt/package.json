@@ -1,0 +1,16 @@
+{
+  "name": "promise-it-wont-hurt",
+  "version": "1.0.0",
+  "description": "",
+  "main": "always-asynchronous.js",
+  "dependencies": {
+    "es6-promise": "^4.2.5",
+    "jest": "^23.6.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "jest"
+  },
+  "author": "",
+  "license": "ISC"
+}

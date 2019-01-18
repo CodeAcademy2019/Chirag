@@ -1,6 +1,8 @@
-'use strict';
-var os = require('os'); os.tmpDir = os.tmpdir;
-var promise = new Promise(function (fulfill, reject) {
+function promise(){
+    return new Promise(function (fulfill, reject) {
       setTimeout(()=>{fulfill('FULFILLED!')},300);
 });
-promise.then(s => console.log(s));
+}
+promise().then((s) => console.log(s));
+
+module.exports=promise;

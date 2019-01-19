@@ -9,7 +9,7 @@ int comparetor (const void * a, const void * b)
 
 int *twoArrays(int *a,int *b,int s1,int s2){
     int *res,i,j,count=0;
-    res=(int *)malloc(s1*s2*sizeof(int));
+    res=(int *)malloc(s1*sizeof(int));
     for(i=0;i<s1;i++){
         for(j=0;j<s2;j++){
             res[count++]=a[i]+b[j];
@@ -19,21 +19,22 @@ int *twoArrays(int *a,int *b,int s1,int s2){
 }
 
 int main(){
-    int t,**p,*length,w,i,j,c,max,profit,*times,**position,totalprofit,*sort,count,k;
+    int t=0,**p,*length,w,i,j,c,max,profit,*times,**position,totalprofit,*sort,count,k;
     
     while(1){
-        
+        t++;
+
         scanf("%d",&w);
         if(w==0)
         break;
-        
+
         times=(int *)malloc(w*sizeof(int));
         
         p=(int **)malloc(w*sizeof(int *));
         position=(int **)malloc(w*sizeof(int *));
         
         for(i=0;i<w;i++){
-        times[i]=0;
+        times[i]=1;
         }
 
         length=(int *)malloc(w*sizeof(int));
@@ -43,6 +44,7 @@ int main(){
             length[i]=c;
             p[i]=(int *)malloc(c*sizeof(int));
             position[i]=(int *)malloc(c*sizeof(int));
+            memset(position[i], 0, c*sizeof(position[i][0]));
             for(j=0;j<c;j++){
                 scanf("%d",&p[i][j]);
             }
@@ -56,9 +58,8 @@ int main(){
                 profit+=10-p[i][j];
                 if(profit>max){
                     max=profit;
-                    times[i]=0;
-                    position[i][times[i]]=j+1;
-                    times[i]++;
+                    times[i]=1;
+                    position[i][times[i]-1]=j+1;
                     continue;
                 }
                 if(profit==max){
@@ -68,20 +69,23 @@ int main(){
             }
             totalprofit+=max;
         }
-        printf("\n%d \n",totalprofit);
+        printf("\n%d\n",t);
+        printf("%d \n",totalprofit);
 
         int l=1;
         for(i=0;i<w;i++){
             l*=times[i];
         }
 
-        count=0;k=0;
+        count=times[0];k=0;
         sort=position[0];
         for(i=1;i<w;i++){
-            sort=twoArrays(sort,position[i],times[i-1]*times[i],times[i]);
+            count*=times[i];
+            sort=twoArrays(sort,position[i],count,times[i]);
         }
 
         qsort (sort, l, sizeof(int), comparetor);
+        
         printf("%d ",sort[0]);
         count=1;
         for(i=1;i<l;i++){
@@ -93,6 +97,11 @@ int main(){
             break;
         }
 
+        free(p);
+        free(length);
+        free(times);
+        free(position);
+        free(sort);
     }
 
 

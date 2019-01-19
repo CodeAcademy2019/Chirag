@@ -20,11 +20,12 @@ int *twoArrays(int *a,int *b,int s1,int s2){
 
 int main(){
     int t,**p,*length,w,i,j,c,max,profit,*times,**position,totalprofit,*sort,count,k;
-    scanf("%d",&t);
-
-    while((t--)!=0){
+    
+    while(1){
         
         scanf("%d",&w);
+        if(w==0)
+        break;
         
         times=(int *)malloc(w*sizeof(int));
         

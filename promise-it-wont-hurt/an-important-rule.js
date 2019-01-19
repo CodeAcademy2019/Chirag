@@ -1,19 +1,19 @@
 function alwaysThrows(){
-	throw new Error('OH NOES');
+    throw new Error('OH NOES');
 }
 
 function iterate(a){
-	console.log(a);
-	return a+1;
+    console.log(a);
+    return a+1;
 }
 
 function rej(err){
-	console.log(err.message);
-	// alwaysThrows();
+    console.log(err.message);
+    // alwaysThrows();
 }
 
 function runner(){
-	return Promise.resolve(1);
+return Promise.resolve(1);
 }
 
 var res=runner();

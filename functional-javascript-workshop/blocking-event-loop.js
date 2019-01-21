@@ -1,8 +1,7 @@
-function repeat(operation, num) {
+async function repeat(operation, num) {
     // modify this so it can be interrupted
-    if (num <= 0) return
-    operation()
-    return setTimeout(repeat(operation, --num),0)
+    if (num <= 0) return await setImmediate(operation())
+    return  await setImmediate(repeat(operation, --num))
   }
 
-  module.exports = repeat
+  module.exports = repeat;

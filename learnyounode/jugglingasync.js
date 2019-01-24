@@ -1,34 +1,46 @@
-var http = require('http');
+const http = require('http');
 
-function print(){
-    count++;
-    if(count==3){
-        display.forEach(console.log);
+let display=[];
+let count=0;
+
+const print = () => {
+    count+=1;
+    if(count === 3){
+        display.forEach((element)=>{
+            console.log(element);
+        });
     }
-    return;
-}
-
-const display=['','',''];
-var count=0;
-
+};
 http.get(process.argv[2],(res) => {
     res.setEncoding('utf8');
+    let data ='';
     res.on('data',(s)=>{
-        display[0]+=s;
+        data += s;
     });
-    res.on('end',print);
+    res.on('end', () => {
+        display[0] = data;
+        print();
+    });
 });
 http.get(process.argv[3],(res) => {
     res.setEncoding('utf8');
+    let data ='';
     res.on('data',(s)=>{
-        display[1]+=s;
+        data += s;
     });
-    res.on('end',print);
+    res.on('end', () => {
+        display[1] = data;
+        print();
+    });
 });
 http.get(process.argv[4],(res) => {
     res.setEncoding('utf8');
+    let data = '';
     res.on('data',(s)=>{
-        display[2]+=s;
+        data += s;
     });
-    res.on('end',print);
+    res.on('end', () => {
+        display[2] = data;
+        print();
+    });
 });
